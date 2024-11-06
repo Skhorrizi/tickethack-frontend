@@ -3,6 +3,25 @@ console.log(bookingId);
 
 const cartContainer = document.querySelector('.trajetGlobal')
 const totalPriceNode = document.querySelector('#total')
+const purchaseNode = document.querySelector('#purchase')
+
+purchaseNode.addEventListener('click', (e) => {
+    e.preventDefault()
+    const deleteNodes = document.querySelectorAll('.delete') 
+    console.log(deleteNodes);
+    
+    const dates = []
+    deleteNodes.forEach(node => dates.push(node.dataset.date))
+    console.log(dates);
+    
+    
+    fetch('http://localhost:3000/booking', {
+        method: 'POST',
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ dates })
+    })
+    
+})
 
 fetch(`http://localhost:3000/cart/${bookingId}`)
     .then(response => response.json())
@@ -23,6 +42,11 @@ fetch(`http://localhost:3000/cart/${bookingId}`)
         deleteNodes.forEach(node => {
             node.addEventListener('click', function () {
                 console.log(this.dataset);
+                fetch(`http://localhost:3000/cart/${this.dataset.date}`)
+                    .then(data => {
+                        console.log(data);
+                        // window.location.replace("http://localhost:5501/basket.html");
+                })
                 
             })
         })
