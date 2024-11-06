@@ -118,13 +118,12 @@ a {
 
 .trajetGlobal {
     display: flex;
+    flex-direction: column;
     width: 80%;
     padding-top: 2%;
     padding-bottom: 2%;
     justify-content: space-between;
-    /* border: 1px solid black; */
-    height: 6vh;
-    background-color: #F0F0F0;
+    align-items: center;
 }
 
 .deparr {
@@ -236,9 +235,30 @@ a {
     margin-right: 1vw;
 }
 
+/* =============Result============= */
 
+.row-result {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 90%;
+    margin: 5px 0;
+    background-color: #F0F0F0;
+    padding: 10px;
+    border-radius: 6px;
+    align-items: center;
+}
 
-
+.delete {
+    background-color: #56a391;
+    color: white;
+    padding: 5px;
+    border-radius: 4px;
+    width: 30px;
+    display: flex;
+    justify-content: center;
+    cursor: pointer;
+}
 
 
 
