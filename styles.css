@@ -1,0 +1,145 @@
+/*   
+font-family: "Work Sans", sans-serif; 
+font-family: "Noto Sans", sans-serif;
+*/
+
+a {
+    color: inherit;
+    /* blue colors for links too */
+    text-decoration: inherit;
+    /* no underline */
+    cursor: pointer;
+}
+
+body {
+    background-image: url('./images/background.jpg');
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: top;
+    background-position-y: -22rem;
+}
+
+header {
+    background-color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
+    height: 70px;
+}
+
+.logo {
+    font-size: 22px;
+    color: #56a391;
+    font-weight: bold;
+    font-family: "Noto Sans", sans-serif;
+    font-weight: 700;
+}
+
+.link {
+    display: flex;
+    justify-content: space-around;
+    font-size: 18px;
+    width: 160px;
+    font-family: "Work Sans", sans-serif;
+}
+
+.container {
+    color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.text-content h1 {
+    font-family: "Noto Sans", sans-serif;
+    font-weight: 700;
+}
+
+.text-content p {
+    font-family: "Work Sans", sans-serif;
+    padding: 0 20px;
+}
+
+.container-search,
+.container-result {
+    display: flex;
+    width: 300px;
+    height: 300px;
+    background-color: white;
+    border-radius: 6px;
+    margin: 15px;
+    color: black;
+    font-family: "Work Sans", sans-serif;
+}
+
+.container-search {
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.dep-arr {
+    width: 100%;
+}
+
+input,
+#search {
+    width: 80%;
+    height: 34px;
+}
+
+input {
+    background-color: #F1F4F3;
+    border: none;
+    border-radius: 6px;
+    padding-left: 10px;
+}
+
+#search {
+    border: none;
+    border-radius: 6px;
+    background-color: #56a391;
+    color: white;
+    cursor: pointer;
+}
+
+#departure,
+#arrival {
+    margin: 1px;
+}
+
+::-webkit-calendar-picker-indicator {
+    padding-right: 10px;
+}
+
+input::placeholder {
+    font-family: "Work Sans", sans-serif;
+}
+
+.container-result {
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+#train {
+    height: 140px;
+    border-bottom: 2px solid #56a391;
+}
+
+@media screen and (min-width: 800px) {
+    header {
+        height: 60px;
+    }
+
+    .text-content {
+        margin: 50px 0;
+    }
+
+    .container-large {
+        display: flex;
+        gap: calc(10px + 5vw);
+    }
+}
