@@ -36,12 +36,22 @@ searchButton.addEventListener('click', async () => {
     
 
     if (dataFromBackend.result) {
-        dataFromBackend.trips.forEach((trip) => {
-            const row = rowResultTeplate(trip)
-            resultContainer.innerHTML += row
-        })
-
-        addEventOnBackendResult()
+        if (dataFromBackend.trips.length > 0) {
+            resultContainer.innerHTML = ''
+            resultContainer.style.justifyContent = 'unset'
+            dataFromBackend.trips.forEach((trip) => {
+                const row = rowResultTeplate(trip)
+                resultContainer.innerHTML += row
+            })
+    
+            addEventOnBackendResult()
+            
+        } else {
+            const img = document.querySelector('#train')
+            const text = document.querySelector('.container-result > p')
+            img.src = './images/notfound.png'
+            text.textContent = 'Trips not found'
+        }
     }
 })
 
