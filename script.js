@@ -5,7 +5,7 @@ const dateInput = document.querySelector('#date')
 const resultContainer = document.querySelector('.container-result')
 
 const id = "id" + Math.random().toString(16).slice(2)
-localStorage.setItem("cartId", id);
+localStorage.setItem("bookingId", id);
 
 console.log(id)
 
@@ -47,6 +47,7 @@ const rowResultTeplate = data => {
     const hours = date.getHours()
     let minutes = date.getMinutes()
     minutes = minutes.toString().length === 1 ? `0${minutes}` : minutes
+    const bookingId = localStorage.getItem("bookingId")
 
     return `<div class="result-row">
         <div class="result-row-trip">
@@ -60,9 +61,9 @@ const rowResultTeplate = data => {
             class="book"
             data-departure="${data.departure}" 
             data-arrival="${data.arrival}"
-            data-hour="${hours}:${minutes}"
             data-date="${data.date}"
             data-price="${data.price}"
+            data-bookingId="${bookingId}"
             >Book</button>
     </div>`
 }
@@ -70,15 +71,19 @@ const rowResultTeplate = data => {
 function addEventOnBackendResult() {
     const bookNodes = document.querySelectorAll('.book')
     bookNodes.forEach((node) => {
-        node.addEventListener('click', () => {
+        node.addEventListener('click', async () => {
             const { departure, arrival, hour, price, date } = node.dataset
             console.log({ departure, arrival, hour, price, date });
             
-            fetch('http://localhost:3000/basket', {
+            const response = await fetch('http://localhost:3000/cart', {
                 method: 'POST',
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify(node.parentNode.dataset)
             })
+            const data = await response.json()
+            if (data.result) {
+                window.location.replace("http://localhost:5501/basket.html");
+            }
         })
     })
 }
