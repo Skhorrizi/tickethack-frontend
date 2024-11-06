@@ -20,7 +20,9 @@ purchaseNode.addEventListener('click', (e) => {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ dates })
     })
-    
+
+    const id = "id" + Math.random().toString(16).slice(2)
+    localStorage.setItem('bookingId', id);
 })
 
 fetch(`http://localhost:3000/cart/${bookingId}`)
