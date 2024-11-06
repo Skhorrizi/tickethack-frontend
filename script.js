@@ -5,7 +5,10 @@ const dateInput = document.querySelector('#date')
 const resultContainer = document.querySelector('.container-result')
 
 const id = "id" + Math.random().toString(16).slice(2)
-localStorage.setItem("bookingId", id);
+const bookingId = localStorage.getItem('bookingId');
+if (!bookingId) {
+    localStorage.setItem('bookingId', id);
+}
 
 console.log(id)
 
@@ -72,15 +75,18 @@ function addEventOnBackendResult() {
     const bookNodes = document.querySelectorAll('.book')
     bookNodes.forEach((node) => {
         node.addEventListener('click', async () => {
-            const { departure, arrival, hour, price, date } = node.dataset
-            console.log({ departure, arrival, hour, price, date });
+            const { departure, arrival, date, price } = node.dataset
+            const bookingId = localStorage.getItem('bookingId')
+            // console.log({ departure, arrival, hour, price, date });
             
             const response = await fetch('http://localhost:3000/cart', {
                 method: 'POST',
                 headers: { "Content-Type": "application/json" },
-                body: JSON.stringify(node.parentNode.dataset)
+                body: JSON.stringify({ departure, arrival, date, price, bookingId })
             })
+
             const data = await response.json()
+
             if (data.result) {
                 window.location.replace("http://localhost:5501/basket.html");
             }
